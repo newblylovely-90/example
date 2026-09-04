@@ -5,11 +5,10 @@
 1.jpg
 스크린샷*.png
 
-# 같은 폴더에서 진행 중인 별개 버전 — 이 저장소는 단일 페이지 index.html 만 배포합니다.
+# 같은 폴더에서 진행 중인 별개 버전 — 이 저장소는 index.html 과 demo/ 를 배포합니다.
 # 그쪽을 올리려면 아래 줄을 지우세요.
 DESIGN.md
 assets/
-demo/
 docs/
 exhibition/
 
