@@ -1,0 +1,694 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="description" content="사서교사이자 라이브러리 게임 개발자, 두 아이의 엄마 황은유의 소개 페이지입니다.">
+<meta name="author" content="황은유">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:title" content="황은유의 서가">
+<meta property="og:description" content="사서교사이자 라이브러리 게임 개발자, 두 아이의 엄마 황은유의 소개 페이지입니다.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='88'%3E%F0%9F%93%9A%3C/text%3E%3C/svg%3E">
+<title>황은유의 서가</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gaegu:wght@300;400;700&family=Gamja+Flower&display=swap">
+<style>
+:root{
+  --ground:#FFF9F4;
+  --band:#FFF2E8;
+  --surface:#FFFFFF;
+  --surface-2:#FDF0E7;
+  --card-bg:rgba(255,255,255,.94);
+  --ink:#3B2A33;
+  --ink-2:#6F5A66;
+  --ink-3:#A08D99;
+  --line:#F0DCD1;
+  --line-2:#E0C6B7;
+  --rose:#D9547A;
+  --sky:#4A8FC7;
+  --apricot:#DE8A34;
+  --on-rose:#FFFFFF;
+  --hero-a:#FFE3EC;
+  --hero-b:#E6F1FB;
+  --hero-c:#FFF6EC;
+  --shelf-op:.15;
+  --b1:#FFE7EE; --b1l:#F6C2D2;
+  --b2:#E3F0FB; --b2l:#BBDBF3;
+  --b3:#FFEEDC; --b3l:#F5D1AB;
+  --b4:#E6F3EA; --b4l:#C0E0CD;
+  --shadow:0 2px 4px rgba(90,55,70,.05), 0 14px 34px -20px rgba(90,55,70,.35);
+  --focus:#D9547A;
+  --twins:url("img/twins.jpg");
+  --ph-walk:url("img/walk.jpg");
+  --ph-hug:url("img/hug.jpg");
+  --ph-read:url("img/read.jpg");
+  --ph-laugh:url("img/laugh.jpg");
+  --ph-wait:url("img/wait.jpg");
+  --ph-grow:url("img/grow.jpg");
+  --ph-shelf:url("img/shelf.jpg");
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#1C1620;
+    --band:#231C28;
+    --surface:#271F2D;
+    --surface-2:#2F2635;
+    --card-bg:rgba(39,31,45,.93);
+    --ink:#F7ECF1;
+    --ink-2:#C1AEBA;
+    --ink-3:#93808D;
+    --line:#3B3040;
+    --line-2:#4E4054;
+    --rose:#FF93A9;
+    --sky:#8FC6EF;
+    --apricot:#F0A85F;
+    --on-rose:#2C1621;
+    --hero-a:#35212E;
+    --hero-b:#1F2937;
+    --hero-c:#2B212A;
+    --shelf-op:.1;
+    --b1:#432934; --b1l:#6C4354;
+    --b2:#253848; --b2l:#3D5873;
+    --b3:#453321; --b3l:#6C5234;
+    --b4:#26382D; --b4l:#3E5A47;
+    --shadow:0 2px 4px rgba(0,0,0,.35), 0 16px 36px -22px rgba(0,0,0,.8);
+    --focus:#FF93A9;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#1C1620;
+  --band:#231C28;
+  --surface:#271F2D;
+  --surface-2:#2F2635;
+  --card-bg:rgba(39,31,45,.93);
+  --ink:#F7ECF1;
+  --ink-2:#C1AEBA;
+  --ink-3:#93808D;
+  --line:#3B3040;
+  --line-2:#4E4054;
+  --rose:#FF93A9;
+  --sky:#8FC6EF;
+  --apricot:#F0A85F;
+  --on-rose:#2C1621;
+  --hero-a:#35212E;
+  --hero-b:#1F2937;
+  --hero-c:#2B212A;
+  --shelf-op:.1;
+  --b1:#432934; --b1l:#6C4354;
+  --b2:#253848; --b2l:#3D5873;
+  --b3:#453321; --b3l:#6C5234;
+  --b4:#26382D; --b4l:#3E5A47;
+  --shadow:0 2px 4px rgba(0,0,0,.35), 0 16px 36px -22px rgba(0,0,0,.8);
+  --focus:#FF93A9;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--ground);
+  color:var(--ink);
+  font-family:"Gaegu","Apple SD Gothic Neo",system-ui,sans-serif;
+  font-size:19px;
+  line-height:1.8;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3{font-family:"Gaegu",system-ui,sans-serif;font-weight:700;margin:0;text-wrap:balance;letter-spacing:0}
+p{margin:0}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--focus);outline-offset:3px;border-radius:6px}
+.wrap{width:min(1140px,90%);margin-inline:auto}
+.eyebrow{
+  font-family:"Gamja Flower",cursive;font-size:16px;letter-spacing:.06em;
+  color:var(--rose);margin:0 0 10px;
+}
+[id]{scroll-margin-top:88px}
+
+/* ---------- nav ---------- */
+.nav{
+  position:sticky;top:0;z-index:40;
+  background:color-mix(in srgb, var(--ground) 88%, transparent);
+  backdrop-filter:blur(12px);
+  border-bottom:1.5px dashed var(--line-2);
+}
+.nav-in{display:flex;align-items:center;gap:24px;height:70px}
+.mark{display:flex;align-items:baseline;gap:9px;text-decoration:none;margin-right:auto}
+.mark b{font-size:27px;font-weight:700;letter-spacing:.01em}
+.mark span{font-family:"Gamja Flower",cursive;font-size:14px;color:var(--ink-3)}
+.nav-links{display:flex;align-items:center;gap:26px}
+.nav-links a{
+  text-decoration:none;font-size:19px;font-weight:700;color:var(--ink-2);
+  padding:4px 0;border-bottom:2px solid transparent;transition:color .18s,border-color .18s;
+}
+.nav-links a:hover{color:var(--rose);border-bottom-color:var(--rose)}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:inherit;font-size:19px;font-weight:700;line-height:1;
+  padding:13px 22px;border-radius:999px;border:2px solid transparent;
+  text-decoration:none;cursor:pointer;transition:transform .18s,box-shadow .18s,background .18s;
+}
+.btn-primary{background:var(--rose);color:var(--on-rose);box-shadow:0 6px 18px -10px var(--rose)}
+.btn-primary:hover{transform:translateY(-2px) rotate(-1deg);box-shadow:0 12px 26px -12px var(--rose)}
+.btn-ghost{background:transparent;color:var(--ink);border-color:var(--line-2)}
+.btn-ghost:hover{background:var(--surface-2);transform:translateY(-2px)}
+.nav .btn{padding:10px 19px;font-size:18px}
+@media (max-width:760px){ .nav-links{display:none} }
+
+/* ---------- hero ---------- */
+.hero{
+  position:relative;overflow:hidden;
+  background:
+    radial-gradient(900px 420px at 12% 22%, var(--hero-a) 0%, transparent 62%),
+    radial-gradient(820px 460px at 84% 12%, var(--hero-b) 0%, transparent 64%),
+    radial-gradient(700px 500px at 58% 96%, var(--hero-c) 0%, transparent 66%),
+    var(--ground);
+  border-bottom:1.5px dashed var(--line-2);
+}
+.hero-in{
+  display:grid;grid-template-columns:1.04fr .96fr;align-items:center;
+  gap:clamp(34px,5vw,64px);padding:78px 0 94px;
+}
+.hero-copy{max-width:560px}
+.hero-copy h1{font-size:clamp(46px,6.4vw,76px);line-height:1.22;margin:0 0 18px}
+.hero-copy h1 em{font-style:normal;color:var(--rose)}
+.lead{font-size:20px;color:var(--ink-2);max-width:42ch}
+.chips{display:flex;flex-wrap:wrap;gap:9px;margin:24px 0 30px}
+.chip{
+  font-family:"Gamja Flower",cursive;font-size:17px;padding:5px 15px;border-radius:999px;
+  background:var(--surface);border:1.5px solid var(--line-2);color:var(--ink-2);
+}
+.chip:nth-child(1){transform:rotate(-2deg)}
+.chip:nth-child(3){transform:rotate(2deg)}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px}
+.hero-art{position:relative;min-width:0}
+.photo{position:relative;aspect-ratio:500/281}
+.photo-glow{
+  position:absolute;inset:-11% -8%;border-radius:48px;pointer-events:none;
+  background:var(--twins) center/cover no-repeat;
+  filter:blur(44px) saturate(1.4);opacity:.72;
+  animation:breathe 8s ease-in-out infinite alternate;
+}
+@keyframes breathe{from{opacity:.6}to{opacity:.86}}
+.photo-main{
+  position:relative;height:100%;border-radius:18px;
+  background:var(--twins) center/cover no-repeat;
+  border:3px solid rgba(255,255,255,.75);
+  box-shadow:0 2px 6px rgba(90,55,70,.12), 0 30px 64px -32px rgba(90,55,70,.6);
+}
+.photo-tag{
+  position:absolute;left:-12px;bottom:-20px;z-index:2;
+  display:flex;align-items:center;gap:8px;
+  padding:8px 17px;border-radius:999px;
+  background:var(--surface);border:1.5px solid var(--line-2);
+  box-shadow:var(--shadow);transform:rotate(-3deg);
+  font-family:"Gamja Flower",cursive;font-size:17px;color:var(--ink-2);white-space:nowrap;
+}
+.photo-tag i{width:9px;height:9px;border-radius:50%;display:inline-block}
+.photo-tag .p{background:#F3A7B8}
+.photo-tag .b{background:#8FC2E8}
+.fade-up{animation:fadeUp .7s cubic-bezier(.2,.7,.3,1) both}
+.d1{animation-delay:.04s}.d2{animation-delay:.12s}.d3{animation-delay:.2s}.d4{animation-delay:.28s}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@media (max-width:900px){
+  .hero-in{grid-template-columns:1fr;padding:50px 0 72px;gap:40px}
+  .hero-copy{max-width:none}
+}
+@media (max-width:520px){.photo-tag{left:6px;bottom:-18px;font-size:15px;padding:7px 14px}}
+
+/* ---------- sections ---------- */
+.sec{padding:100px 0}
+.sec-head{max-width:660px;margin-bottom:46px}
+.sec-head h2{font-size:clamp(32px,4vw,44px);line-height:1.36;margin:0 0 12px}
+.sec-head p{color:var(--ink-2);font-size:19px}
+.note{font-family:"Gamja Flower",cursive;font-size:16px;color:var(--ink-3);margin-top:12px}
+
+/* ---------- career ---------- */
+.sec-career{position:relative;overflow:hidden;border-block:1.5px dashed var(--line-2);background:var(--band)}
+.sec-career::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:var(--ph-shelf) center/cover no-repeat;
+  opacity:var(--shelf-op);
+}
+.sec-career::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(180deg,var(--band) 0%,transparent 26%,transparent 74%,var(--band) 100%);
+}
+.sec-career > .wrap{position:relative;z-index:1}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+@media (max-width:960px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:620px){.grid{grid-template-columns:1fr}}
+.card{
+  background:var(--card-bg);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+  border:2px solid var(--line);border-radius:20px;
+  padding:22px 24px 20px;display:flex;flex-direction:column;
+  box-shadow:var(--shadow);
+  transition:border-color .2s,transform .2s,box-shadow .2s;
+}
+.card:hover{border-color:var(--line-2);transform:translateY(-4px) rotate(-.5deg)}
+.card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:12px}
+.card-emoji{
+  width:54px;height:54px;border-radius:18px;display:grid;place-items:center;
+  font-size:27px;line-height:1;transform:rotate(-5deg);
+  transition:transform .25s;
+}
+.card:hover .card-emoji{transform:rotate(4deg) scale(1.08)}
+.b-rose{background:var(--b1);border:2px solid var(--b1l)}
+.b-sky{background:var(--b2);border:2px solid var(--b2l)}
+.b-apricot{background:var(--b3);border:2px solid var(--b3l)}
+.b-mint{background:var(--b4);border:2px solid var(--b4l)}
+.kdc{
+  font-family:"Gamja Flower",cursive;font-size:16px;color:var(--ink-3);
+  border:1.5px dashed var(--line-2);border-radius:999px;padding:1px 11px;white-space:nowrap;
+}
+.card h3{font-size:23px;line-height:1.38;margin:0 0 12px}
+.items{
+  list-style:none;margin:0 0 16px;padding:14px 0 0;
+  border-top:2px dotted var(--line-2);
+  display:flex;flex-direction:column;gap:5px;
+}
+.items li{
+  position:relative;padding-left:19px;font-size:17px;line-height:1.62;color:var(--ink-2);
+}
+.items li::before{
+  content:"";position:absolute;left:2px;top:.62em;
+  width:7px;height:7px;border-radius:50%;background:var(--rose);opacity:.55;
+}
+.tag{
+  margin-top:auto;align-self:flex-start;
+  display:inline-flex;align-items:center;gap:7px;
+  font-family:"Gamja Flower",cursive;font-size:16px;color:var(--ink-2);
+}
+.tag::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--ink-3)}
+.t-teach::before{background:var(--rose)}
+.t-dev::before{background:var(--sky)}
+.t-train::before{background:var(--apricot)}
+
+/* ---------- carousel ---------- */
+.carousel{position:relative}
+.track{
+  display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;
+  scroll-behavior:smooth;padding-bottom:6px;scrollbar-width:none;
+}
+.track::-webkit-scrollbar{display:none}
+.slide{flex:0 0 min(760px,84%);margin:0;scroll-snap-align:center}
+.frame{
+  position:relative;border-radius:20px;overflow:hidden;aspect-ratio:8/5;
+  border:3px solid var(--surface);box-shadow:var(--shadow);background:var(--surface-2);
+}
+.shot{position:absolute;inset:0;background-size:cover;background-position:center}
+.scrim{position:absolute;inset:0;background:linear-gradient(to top,rgba(28,14,22,.78),rgba(28,14,22,.16) 46%,transparent 66%)}
+.cap{position:absolute;left:clamp(20px,3.6%,34px);bottom:clamp(16px,3.6%,28px);color:#fff}
+.cap .kw{
+  display:block;font-weight:700;font-size:clamp(34px,5.4vw,54px);line-height:1.08;
+  text-shadow:0 2px 18px rgba(30,12,20,.6);
+}
+.cap .sub{
+  display:block;margin-top:4px;font-family:"Gamja Flower",cursive;font-size:18px;
+  color:rgba(255,255,255,.9);text-shadow:0 1px 12px rgba(30,12,20,.7);
+}
+.controls{display:flex;align-items:center;gap:14px;margin-top:24px}
+.arrow{
+  width:46px;height:46px;border-radius:50%;display:grid;place-items:center;
+  background:var(--surface);border:2px solid var(--line-2);color:var(--ink);
+  cursor:pointer;transition:background .18s,transform .18s;
+}
+.arrow:hover{background:var(--surface-2);transform:translateY(-2px)}
+.arrow svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.dots{display:flex;gap:8px;margin-left:6px;align-items:center}
+.dot{
+  width:9px;height:9px;padding:0;border-radius:50%;border:0;cursor:pointer;
+  background:var(--line-2);transition:background .2s,width .2s;
+}
+.dot[aria-current="true"]{background:var(--rose);width:24px;border-radius:999px}
+.counter{margin-left:auto;font-family:"Gamja Flower",cursive;font-size:17px;color:var(--ink-3)}
+
+/* ---------- cta ---------- */
+.cta-in{
+  position:relative;overflow:hidden;border-radius:24px;
+  border:2px dashed var(--line-2);
+  background:
+    radial-gradient(600px 320px at 15% 0%, var(--hero-a) 0%, transparent 60%),
+    radial-gradient(520px 300px at 88% 100%, var(--hero-b) 0%, transparent 62%),
+    var(--surface);
+  padding:clamp(38px,6vw,72px);
+  display:grid;grid-template-columns:1.25fr auto;align-items:center;gap:36px;
+}
+.cta-in h2{font-size:clamp(30px,4vw,44px);line-height:1.34;margin:0 0 12px}
+.cta-in p{color:var(--ink-2);max-width:44ch}
+.mailrow{display:flex;flex-direction:column;align-items:flex-start;gap:14px}
+.mailaddr{
+  font-family:"Gamja Flower",cursive;font-size:19px;color:var(--ink-2);
+  border-bottom:2px dotted var(--line-2);padding-bottom:2px;user-select:all;
+}
+.btn-lg{padding:17px 30px;font-size:21px}
+@media (max-width:820px){.cta-in{grid-template-columns:1fr;gap:26px}}
+
+/* ---------- footer ---------- */
+.foot{border-top:1.5px dashed var(--line-2);padding:32px 0 44px;background:var(--band)}
+.foot-in{display:flex;flex-wrap:wrap;align-items:center;gap:16px}
+.copy{font-size:17px;color:var(--ink-2);margin-right:auto}
+.copy b{font-weight:700;color:var(--ink)}
+.credit{display:block;font-family:"Gamja Flower",cursive;font-size:15px;color:var(--ink-3)}
+.social{display:flex;gap:10px;flex-wrap:wrap}
+.social a{
+  display:inline-flex;align-items:center;gap:8px;text-decoration:none;
+  font-size:17px;color:var(--ink-2);
+  padding:7px 16px;border:1.5px solid var(--line-2);border-radius:999px;background:var(--surface);
+  transition:color .18s,border-color .18s,transform .18s;
+}
+.social a:hover{color:var(--rose);border-color:var(--rose);transform:translateY(-2px) rotate(-1deg)}
+.social svg{width:16px;height:16px;fill:currentColor}
+
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  .track{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+<header class="nav">
+  <nav class="nav-in wrap" aria-label="주요">
+    <a class="mark" href="#top"><b>황은유</b><span>Hwang Eunyu</span></a>
+    <div class="nav-links">
+      <a href="#career">경력</a>
+      <a href="#moments">순간</a>
+      <a href="#contact">연락</a>
+    </div>
+    <a class="btn btn-primary" href="#contact">협업 문의</a>
+  </nav>
+</header>
+
+<section class="hero" id="top">
+  <div class="hero-in wrap">
+    <div class="hero-copy">
+      <p class="eyebrow fade-up d1">사서교사 · 라이브러리 게임 개발자</p>
+      <h1 class="fade-up d2">읽는 사람을<br><em>기르는 일</em></h1>
+      <p class="lead fade-up d3">학교도서관에서 아이들의 첫 책을 건네고, 집에서는 두 아이의 첫 밥상을 차립니다. 읽기의 즐거움을 수업과 게임, 그리고 연수로 옮기고 있어요.</p>
+      <div class="chips fade-up d3">
+        <span class="chip">채유 엄마</span>
+        <span class="chip">하콩이 엄마</span>
+        <span class="chip">준효 아내</span>
+      </div>
+      <div class="hero-cta fade-up d4">
+        <a class="btn btn-primary" href="#contact">협업 메일 보내기</a>
+        <a class="btn btn-ghost" href="#career">경력 보기</a>
+      </div>
+    </div>
+
+    <div class="hero-art fade-up d2">
+      <div class="photo">
+        <div class="photo-glow" aria-hidden="true"></div>
+        <div class="photo-main" role="img" aria-label="분홍색 니트 모자를 쓴 아기와 하늘색 니트 모자를 쓴 아기가 나란히 잠들어 있는 사진"></div>
+        <span class="photo-tag"><i class="p"></i><i class="b"></i>둘이서 하나</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<main>
+  <section class="sec sec-career" id="career">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">경력 · Career</p>
+        <h2>지금까지 맡아온 아홉 개의 자리</h2>
+        <p>아이들이 책과 처음 만나는 자리를 만드는 일, 그리고 그 방법을 다른 선생님들과 나누는 일.</p>
+        <p class="note">※ 카드마다 붙은 숫자는 재미로 달아둔 청구기호예요.</p>
+      </div>
+
+      <div class="grid">
+        <article class="card">
+          <div class="card-head"><span class="card-emoji b-rose">📚</span><span class="kdc">020</span></div>
+          <h3>사서교사</h3>
+          <ul class="items">
+            <li>학교도서관 운영과 장서 개발</li>
+            <li>도서관 이용 교육 · 정보활용 수업</li>
+            <li>아이마다 다른 첫 책 찾아주기</li>
+          </ul>
+          <span class="tag t-teach">교직</span>
+        </article>
+
+        <article class="card">
+          <div class="card-head"><span class="card-emoji b-sky">🎮</span><span class="kdc">004</span></div>
+          <h3>라이브러리 게임 개발자</h3>
+          <ul class="items">
+            <li>도서관을 무대로 한 게임 기획·개발</li>
+            <li>이용 교육을 놀이로 바꾸기</li>
+            <li>학생 참여형 콘텐츠 설계</li>
+          </ul>
+          <span class="tag t-dev">개발</span>
+        </article>
+
+        <article class="card">
+          <div class="card-head"><span class="card-emoji b-mint">🌱</span><span class="kdc">029</span></div>
+          <h3>독서인문교육 현장지원단</h3>
+          <ul class="items">
+            <li>학교 현장 독서인문교육 컨설팅</li>
+            <li>프로그램 설계와 운영 지원</li>
+            <li>우수 사례 발굴하고 나누기</li>
+          </ul>
+          <span class="tag t-teach">현장 지원</span>
+        </article>
+
+        <article class="card">
+          <div class="card-head"><span class="card-emoji b-rose">💗</span><span class="kdc">181</span></div>
+          <h3>사회정서교육 선도교원</h3>
+          <ul class="items">
+            <li>책으로 감정을 읽는 수업 연구</li>
+            <li>학급 단위 사회정서 프로그램 운영</li>
+            <li>선생님들과 사례 나눔</li>
+          </ul>
+          <span class="tag t-teach">연구</span>
+        </article>
+
+        <article class="card">
+          <div class="card-head"><span class="card-emoji b-sky">⚖️</span><span class="kdc">368</span></div>
+          <h3>공공기관 저작권 전문가<br>양성 과정 (중급)</h3>
+          <ul class="items">
+            <li>수업 자료 저작권 검토</li>
+            <li>도서관 자료 이용 기준 세우기</li>
+            <li>저작권 안내 자료 제작</li>
+          </ul>
+          <span class="tag t-dev">이수</span>
+        </article>
+
+        <article class="card">
+          <div class="card-head"><span class="card-emoji b-apricot">🎓</span><span class="kdc">374.1</span></div>
+          <h3>신규교사 연수 강사</h3>
+          <ul class="items">
+            <li>학교도서관 첫 해 실무 안내</li>
+            <li>업무 흐름과 연간 계획 설계</li>
+            <li>현장에서 나오는 질문 상담</li>
+          </ul>
+          <span class="tag t-train">강의</span>
+        </article>
+
+        <article class="card">
+          <div class="card-head"><span class="card-emoji b-apricot">🧭</span><span class="kdc">374.2</span></div>
+          <h3>입직기 연수 강사</h3>
+          <ul class="items">
+            <li>입직기 교사의 성장 과정 지원</li>
+            <li>시행착오와 경험 나누기</li>
+            <li>나만의 수업 색 찾도록 돕기</li>
+          </ul>
+          <span class="tag t-train">강의</span>
+        </article>
+
+        <article class="card">
+          <div class="card-head"><span class="card-emoji b-mint">🍚</span><span class="kdc">594</span></div>
+          <h3>이유식 마스터</h3>
+          <ul class="items">
+            <li>초기·중기·후기 이유식 설계</li>
+            <li>알레르기 체크와 식단 기록</li>
+            <li>두 아이의 첫 밥상 차리기</li>
+          </ul>
+          <span class="tag">생활</span>
+        </article>
+
+        <article class="card">
+          <div class="card-head"><span class="card-emoji b-rose">🏡</span><span class="kdc">598</span></div>
+          <h3>채유 · 하콩이 · 준효</h3>
+          <ul class="items">
+            <li>채유 엄마</li>
+            <li>하콩이 엄마</li>
+            <li>준효 아내</li>
+          </ul>
+          <span class="tag">가족</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="moments">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">순간 · Moments</p>
+        <h2>매일의 장면들</h2>
+        <p>교실과 집 사이, 아이와 함께 지나온 여섯 개의 장면이에요.</p>
+      </div>
+    </div>
+
+    <div class="carousel wrap">
+      <div class="track" id="track" tabindex="0" role="group" aria-label="부모와 아이의 순간 캐러셀">
+
+        <figure class="slide">
+          <div class="frame">
+            <div class="shot" style="background-image:var(--ph-walk)" role="img" aria-label="해질녘 시골길을 손잡고 함께 걷는 엄마와 아이"></div>
+            <div class="scrim"></div>
+            <figcaption class="cap"><span class="kw">동행</span><span class="sub">같은 속도로 걷는 일</span></figcaption>
+          </div>
+        </figure>
+
+        <figure class="slide">
+          <div class="frame">
+            <div class="shot" style="background-image:var(--ph-hug)" role="img" aria-label="아이를 품에 꼭 안고 있는 엄마"></div>
+            <div class="scrim"></div>
+            <figcaption class="cap"><span class="kw">다정</span><span class="sub">안아주면 다시 괜찮아지는</span></figcaption>
+          </div>
+        </figure>
+
+        <figure class="slide">
+          <div class="frame">
+            <div class="shot" style="background-image:var(--ph-read)" role="img" aria-label="도서관 책장 앞에서 아이와 함께 책을 읽는 어른"></div>
+            <div class="scrim"></div>
+            <figcaption class="cap"><span class="kw">이야기</span><span class="sub">오늘 밤에도 한 권 더</span></figcaption>
+          </div>
+        </figure>
+
+        <figure class="slide">
+          <div class="frame">
+            <div class="shot" style="background-image:var(--ph-laugh)" role="img" aria-label="아기를 안고 함께 활짝 웃는 엄마"></div>
+            <div class="scrim"></div>
+            <figcaption class="cap"><span class="kw">웃음</span><span class="sub">높이 들어 올린 순간</span></figcaption>
+          </div>
+        </figure>
+
+        <figure class="slide">
+          <div class="frame">
+            <div class="shot" style="background-image:var(--ph-wait)" role="img" aria-label="노을 지는 하늘 아래 나란히 앉은 어른과 아이의 실루엣"></div>
+            <div class="scrim"></div>
+            <figcaption class="cap"><span class="kw">기다림</span><span class="sub">아이의 속도를 믿는 시간</span></figcaption>
+          </div>
+        </figure>
+
+        <figure class="slide">
+          <div class="frame">
+            <div class="shot" style="background-image:var(--ph-grow)" role="img" aria-label="노을을 배경으로 아이를 어깨에 태운 어른의 실루엣"></div>
+            <div class="scrim"></div>
+            <figcaption class="cap"><span class="kw">성장</span><span class="sub">어깨 위에서 보이는 세계</span></figcaption>
+          </div>
+        </figure>
+
+      </div>
+
+      <div class="controls">
+        <button class="arrow" type="button" id="prev" aria-label="이전 장면"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+        <button class="arrow" type="button" id="next" aria-label="다음 장면"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+        <div class="dots" id="dots" role="tablist" aria-label="장면 선택"></div>
+        <span class="counter" id="counter">1 / 6</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="contact">
+    <div class="wrap">
+      <div class="cta-in">
+        <div>
+          <p class="eyebrow">함께 하기 · Collaborate</p>
+          <h2>같이 만들 일이 있다면<br>편하게 연락 주세요</h2>
+          <p>연수·강의 요청, 독서교육 프로그램 설계, 도서관 게임 개발 협업 — 어떤 이야기든 좋아요. 하루 안에 답장 드릴게요.</p>
+        </div>
+        <div class="mailrow">
+          <a class="btn btn-primary btn-lg" href="mailto:eunyu0820@naver.com?subject=%5B%ED%98%91%EC%97%85%20%EB%AC%B8%EC%9D%98%5D%20&amp;body=%EC%95%88%EB%85%95%ED%95%98%EC%84%B8%EC%9A%94%2C%20%ED%99%A9%EC%9D%80%EC%9C%A0%20%EC%84%A0%EC%83%9D%EB%8B%98.%0A%0A-%20%EC%86%8C%EC%86%8D%3A%0A-%20%EC%A0%9C%EC%95%88%20%EB%82%B4%EC%9A%A9%3A%0A-%20%EC%9D%BC%EC%A0%95%3A%0A">✉️ 협업 메일 보내기</a>
+          <span class="mailaddr">eunyu0820@naver.com</span>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="foot-in wrap">
+    <p class="copy">&copy; <span id="year">2026</span> <b>황은유</b>. All rights reserved.
+      <span class="credit">순간 섹션과 배경 사진 · Unsplash</span>
+    </p>
+    <div class="social">
+      <a href="https://instagram.com/new_t___" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16zm0 3.24a6.6 6.6 0 100 13.2 6.6 6.6 0 000-13.2zm0 10.88a4.28 4.28 0 110-8.56 4.28 4.28 0 010 8.56zm8.4-11.14a1.54 1.54 0 11-3.08 0 1.54 1.54 0 013.08 0z"/></svg>
+        new_t___
+      </a>
+      <a href="https://github.com/newblylovely-90" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5A11.5 11.5 0 00.5 12a11.5 11.5 0 007.86 10.92c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.53-1.35-1.29-1.71-1.29-1.71-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.2 1.77 1.2 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.56-.29-5.25-1.28-5.25-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 015.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.12 3.05.74.81 1.18 1.84 1.18 3.1 0 4.43-2.69 5.4-5.26 5.69.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0023.5 12 11.5 11.5 0 0012 .5z"/></svg>
+        GitHub
+      </a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  var track = document.getElementById('track');
+  var slides = Array.prototype.slice.call(track.querySelectorAll('.slide'));
+  var dotsWrap = document.getElementById('dots');
+  var counter = document.getElementById('counter');
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var index = 0;
+
+  var dots = slides.map(function (slide, i) {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'dot';
+    b.setAttribute('role', 'tab');
+    b.setAttribute('aria-label', (i + 1) + '번째 장면');
+    b.addEventListener('click', function () { go(i); });
+    dotsWrap.appendChild(b);
+    return b;
+  });
+
+  function go(i) {
+    var target = slides[Math.max(0, Math.min(slides.length - 1, i))];
+    var left = track.scrollLeft + target.getBoundingClientRect().left - track.getBoundingClientRect().left;
+    track.scrollTo({ left: left, behavior: reduce ? 'auto' : 'smooth' });
+  }
+
+  function nearest() {
+    var mid = track.scrollLeft + track.clientWidth / 2;
+    var best = 0, bestDist = Infinity;
+    slides.forEach(function (s, i) {
+      var c = s.offsetLeft + s.offsetWidth / 2 - track.offsetLeft;
+      var d = Math.abs(c - mid);
+      if (d < bestDist) { bestDist = d; best = i; }
+    });
+    return best;
+  }
+
+  function sync() {
+    index = nearest();
+    dots.forEach(function (d, i) { d.setAttribute('aria-current', i === index ? 'true' : 'false'); });
+    counter.textContent = (index + 1) + ' / ' + slides.length;
+  }
+
+  var ticking = false;
+  track.addEventListener('scroll', function () {
+    if (ticking) return;
+    ticking = true;
+    window.requestAnimationFrame(function () { sync(); ticking = false; });
+  });
+
+  document.getElementById('prev').addEventListener('click', function () { go(index - 1); });
+  document.getElementById('next').addEventListener('click', function () { go(index + 1); });
+
+  track.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowRight') { e.preventDefault(); go(index + 1); }
+    if (e.key === 'ArrowLeft') { e.preventDefault(); go(index - 1); }
+  });
+
+  sync();
+})();
+</script>
+</body>
+</html>
